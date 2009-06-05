@@ -1,3 +1,3 @@
 [submodule "libevent"]
 	path = libevent
-	url = git://github.com:robertmeta/win32-libevent.git
+	url = git://github.com/robertmeta/win32-libevent.git
