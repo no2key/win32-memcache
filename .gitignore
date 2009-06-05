@@ -1,0 +1,8 @@
+win32/Release/*
+win32/UpgradeLog.XML
+win32/_UpgradeReport_Files/*
+win32/Debug/*
+win32/libevent.suo
+win32/memcached.ncb
+win32/memcached.suo
+win32/memcached.vcproj.*
