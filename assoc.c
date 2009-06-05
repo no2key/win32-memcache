@@ -15,12 +15,17 @@
 
 #include "memcached.h"
 #include <sys/stat.h>
+#ifndef WIN32
 #include <sys/socket.h>
 #include <sys/signal.h>
 #include <sys/resource.h>
 #include <fcntl.h>
 #include <netinet/in.h>
 #include <errno.h>
+#else /* !WIN32 */
+#include "win32/config.h"
+#include <winsock2.h>
+#endif /* WIN32 */
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -487,6 +492,8 @@ item *assoc_find(const char *key, const size_t nkey) {
     uint32_t hv = hash(key, nkey, 0);
     item *it;
     unsigned int oldbucket;
+    item *ret = NULL;
+    int depth = 0;
 
     if (expanding &&
         (oldbucket = (hv & hashmask(hashpower - 1))) >= expand_bucket)
@@ -496,8 +503,6 @@ item *assoc_find(const char *key, const size_t nkey) {
         it = primary_hashtable[hv & hashmask(hashpower)];
     }
 
-    item *ret = NULL;
-    int depth = 0;
     while (it) {
         if ((nkey == it->nkey) && (memcmp(key, ITEM_key(it), nkey) == 0)) {
             ret = it;
