@@ -1,11 +1,13 @@
-Dependencies:
-
-git clone git://github.com/robertmeta/win32-memcache.git
-cd .\win32-memcache
-git submodule init
-git submodule update
-
-Then just build libevent followed by memcached.
+Quick Start:
+ - git clone git://github.com/robertmeta/win32-memcache.git
+ - cd .\win32-memcache
+ - git submodule init
+ - git submodule update
+ - .\libevent\WIN32-Prj\libevent.vcproj
+ - build libevent
+ - .\win32\memcached.vcproj
+ - build memcached
+ - *enjoy* 
 
 The memcached website is at:
 
