@@ -62,6 +62,7 @@ int inet_aton(register const char *cp, struct in_addr *addr);
 
 #define close(s) closesocket(s)
 
+#if (NTDDI_VERSION < NTDDI_LONGHORN)
 inline int inet_pton(int af, register const char *cp, struct in_addr *addr)
 {
     if(af != AF_INET) {
@@ -70,6 +71,7 @@ inline int inet_pton(int af, register const char *cp, struct in_addr *addr)
     }
     return inet_aton(cp, addr);
 }
+#endif
 
 inline size_t write(int s, void *buf, size_t len)
 {
